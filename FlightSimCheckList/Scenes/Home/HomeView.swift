@@ -12,14 +12,14 @@ protocol HomeViewDelegate: AnyObject {
     func didTapOpenChecklist()
 }
 
-class HomeView: UIView {
+class HomeView: UIView, HomeViewModelProtocol {
     weak var delegate: HomeViewDelegate?
     private var viewModel: HomeViewModel
     
     private let darkBlueColor = UIColor(named: "darkBlue")
     private let lightBlueColor = UIColor(named: "lightBlue")
     private var manufacturersArray: [ManufacturersModel] = []
-    private var modelsArray: [String] = []
+    private var modelsArray: [AirplaneModel] = []
     private var choosedManufacturer: ManufacturersType = .airbus
     private var choosedModel = String()
     private var type: ChecklistType?
@@ -28,13 +28,7 @@ class HomeView: UIView {
         self.viewModel = viewModel
         super.init(frame: .zero)
         backgroundColor = .white
-        self.setupHierarchy()
-        self.setupConstraints()
-        self.setupDropdown()
-        self.dismissPickerView()
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        self.addGestureRecognizer(tap)
+        self.setupView()
     }
     
     required init?(coder: NSCoder) {
@@ -44,11 +38,11 @@ class HomeView: UIView {
     func setupView() {
         self.setupHierarchy()
         self.setupConstraints()
-    }
-    
-    @objc
-    private func dismissKeyboard() {
-        self.endEditing(true)
+        self.setupDropdown()
+        self.dismissPickerView()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        self.addGestureRecognizer(tap)
     }
     
     func updateManufacturers(manufacturers: [ManufacturersModel] ) {
@@ -56,7 +50,7 @@ class HomeView: UIView {
         self.manufacturersPicker.reloadAllComponents()
     }
     
-    func updateModels(models: [String]) {
+    func updateModels(models: [AirplaneModel]) {
         self.modelsArray = models
         self.modelsPicker.reloadAllComponents()
     }
@@ -137,21 +131,37 @@ class HomeView: UIView {
     private func dismissPickerView() {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
-        let btnToolbar = UIBarButtonItem(title: "fechar",
-                                         style: .done,
-                                         target: self,
-                                         action: #selector(self.dismissKeyboard))
+        let btnDone = UIBarButtonItem(title: "fechar",
+                                      style: .done,
+                                      target: self,
+                                      action: #selector(self.dismissKeyboard))
+        let btnPrevious = UIBarButtonItem(title: "<",
+                                          style: .done,
+                                          target: self,
+                                          action: #selector(self.dismissKeyboard))
+        let btnNext = UIBarButtonItem(title: ">",
+                                      style: .done,
+                                      target: self,
+                                      action: #selector(self.dismissKeyboard))
+        
         let spacebutton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        toolbar.setItems([spacebutton, spacebutton, btnToolbar], animated: true)
+        
+        
+        toolbar.setItems([btnPrevious, btnNext, spacebutton, btnDone], animated: true)
         toolbar.isUserInteractionEnabled = true
         self.manufacturersTextField.inputAccessoryView = toolbar
         self.modelsTextField.inputAccessoryView = toolbar
     }
     
+    @objc
+    private func dismissKeyboard() {
+        self.endEditing(true)
+    }
+    
     // MARK: BUTTON
     
     lazy var chooseChecklistButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 150, height: 40))
+        let button = UIButton()
         button.setTitle("selecionar modelo", for: .normal)
         button.backgroundColor = darkBlueColor
         button.layer.cornerRadius = 8
@@ -201,22 +211,24 @@ extension HomeView: UIPickerViewDelegate, UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        let array = ["Airbus", "boeing"]
         if pickerView == manufacturersPicker {
-            return manufacturersArray.count
+            return array.count
         } else {
-            return modelsArray.count
+            return array.count
         }
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        let array = ["Airbus", "Boeing"]
         if pickerView == manufacturersPicker {
-            let row = manufacturersArray[row].name
+            let row = array[row]
             return row
-        } else if pickerView == modelsPicker {
-            let row = modelsArray[row]
-            return row
+            //        } else if pickerView == modelsPicker {
+            //            let row = modelsArray[row]
+            //            return row
         }
-        let row = modelsArray[row]
+        let row = array[row]
         return row
     }
 }

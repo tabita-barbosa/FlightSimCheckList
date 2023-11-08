@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class ViewController: UIViewController, HomeViewModelProtocol {
+class ViewController: UIViewController {
     // MARK: VIEW CICLE
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,13 +42,13 @@ class ViewController: UIViewController, HomeViewModelProtocol {
         return view
     }()
     
-    func updateManufacturers(manufacturers: [ManufacturersModel] ) {
-        homeView.updateManufacturers(manufacturers: manufacturers)
-    }
-    
-    func updateModels(models: [String]) {
-        homeView.updateModels(models: models)
-    }
+//    func updateManufacturers(manufacturers: [ManufacturersModel] ) {
+//        homeView.updateManufacturers(manufacturers: manufacturers)
+//    }
+//
+//    func updateModels(models: [String]) {
+//        homeView.updateModels(models: models)
+//    }
 }
 
 extension ViewController: HomeViewDelegate {

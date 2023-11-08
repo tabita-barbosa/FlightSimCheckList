@@ -20,6 +20,7 @@
 		62B03E652AFB1380002431F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62B03E642AFB1380002431F3 /* Main.storyboard */; };
 		62B03E672AFB1F48002431F3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B03E662AFB1F48002431F3 /* HomeView.swift */; };
 		62B03E692AFB258E002431F3 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B03E682AFB258E002431F3 /* HomeViewModel.swift */; };
+		62B03E6D2AFB4B38002431F3 /* airplanesMock.json in Sources */ = {isa = PBXBuildFile; fileRef = 62B03E6C2AFB4B38002431F3 /* airplanesMock.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		62B03E662AFB1F48002431F3 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		62B03E682AFB258E002431F3 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		62B03E6B2AFB3969002431F3 /* manufacturersMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manufacturersMock.json; sourceTree = "<group>"; };
+		62B03E6C2AFB4B38002431F3 /* airplanesMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = airplanesMock.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				62B03E6B2AFB3969002431F3 /* manufacturersMock.json */,
+				62B03E6C2AFB4B38002431F3 /* airplanesMock.json */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 				62B03E5A2AFB06EE002431F3 /* ChecklistModel.swift in Sources */,
 				62B03E372AFAC2E2002431F3 /* FlightSimCheckList.xcdatamodeld in Sources */,
 				62B03E312AFAC2E2002431F3 /* ViewController.swift in Sources */,
+				62B03E6D2AFB4B38002431F3 /* airplanesMock.json in Sources */,
 				62B03E2D2AFAC2E2002431F3 /* AppDelegate.swift in Sources */,
 				62B03E672AFB1F48002431F3 /* HomeView.swift in Sources */,
 				62B03E2F2AFAC2E2002431F3 /* SceneDelegate.swift in Sources */,
