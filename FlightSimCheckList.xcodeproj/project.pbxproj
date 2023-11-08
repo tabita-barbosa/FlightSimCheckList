@@ -17,7 +17,9 @@
 		62B03E572AFB06E9002431F3 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B03E562AFB06E9002431F3 /* Extensions.swift */; };
 		62B03E5A2AFB06EE002431F3 /* ChecklistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B03E592AFB06EE002431F3 /* ChecklistModel.swift */; };
 		62B03E5C2AFB0864002431F3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62B03E5B2AFB0864002431F3 /* LaunchScreen.storyboard */; };
-		62B03E5F2AFB0871002431F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62B03E5D2AFB0871002431F3 /* Main.storyboard */; };
+		62B03E652AFB1380002431F3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62B03E642AFB1380002431F3 /* Main.storyboard */; };
+		62B03E672AFB1F48002431F3 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B03E662AFB1F48002431F3 /* HomeView.swift */; };
+		62B03E692AFB258E002431F3 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B03E682AFB258E002431F3 /* HomeViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,7 +35,10 @@
 		62B03E562AFB06E9002431F3 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		62B03E592AFB06EE002431F3 /* ChecklistModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistModel.swift; sourceTree = "<group>"; };
 		62B03E5B2AFB0864002431F3 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		62B03E5E2AFB0871002431F3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "../../projeto-final-iosFund/trabalho-final/Storyboards/Base.lproj/Main.storyboard"; sourceTree = "<group>"; };
+		62B03E642AFB1380002431F3 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		62B03E662AFB1F48002431F3 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		62B03E682AFB258E002431F3 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		62B03E6B2AFB3969002431F3 /* manufacturersMock.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = manufacturersMock.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +71,7 @@
 		62B03E2B2AFAC2E2002431F3 /* FlightSimCheckList */ = {
 			isa = PBXGroup;
 			children = (
+				62B03E6A2AFB3925002431F3 /* Services */,
 				62B03E612AFB0886002431F3 /* Storyboards */,
 				62B03E582AFB06EE002431F3 /* Models */,
 				62B03E552AFB06E9002431F3 /* Extensions */,
@@ -93,6 +99,8 @@
 			isa = PBXGroup;
 			children = (
 				62B03E302AFAC2E2002431F3 /* ViewController.swift */,
+				62B03E662AFB1F48002431F3 /* HomeView.swift */,
+				62B03E682AFB258E002431F3 /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -140,10 +148,18 @@
 		62B03E612AFB0886002431F3 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
+				62B03E642AFB1380002431F3 /* Main.storyboard */,
 				62B03E5B2AFB0864002431F3 /* LaunchScreen.storyboard */,
-				62B03E5D2AFB0871002431F3 /* Main.storyboard */,
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		62B03E6A2AFB3925002431F3 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				62B03E6B2AFB3969002431F3 /* manufacturersMock.json */,
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -204,10 +220,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				62B03E5F2AFB0871002431F3 /* Main.storyboard in Resources */,
 				62B03E4F2AFB0629002431F3 /* Colors.xcassets in Resources */,
 				62B03E4E2AFB0629002431F3 /* Assets.xcassets in Resources */,
 				62B03E5C2AFB0864002431F3 /* LaunchScreen.storyboard in Resources */,
+				62B03E652AFB1380002431F3 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,27 +235,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				62B03E542AFB06E3002431F3 /* ChecklistViewController.swift in Sources */,
+				62B03E692AFB258E002431F3 /* HomeViewModel.swift in Sources */,
 				62B03E5A2AFB06EE002431F3 /* ChecklistModel.swift in Sources */,
 				62B03E372AFAC2E2002431F3 /* FlightSimCheckList.xcdatamodeld in Sources */,
 				62B03E312AFAC2E2002431F3 /* ViewController.swift in Sources */,
 				62B03E2D2AFAC2E2002431F3 /* AppDelegate.swift in Sources */,
+				62B03E672AFB1F48002431F3 /* HomeView.swift in Sources */,
 				62B03E2F2AFAC2E2002431F3 /* SceneDelegate.swift in Sources */,
 				62B03E572AFB06E9002431F3 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		62B03E5D2AFB0871002431F3 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				62B03E5E2AFB0871002431F3 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		62B03E3E2AFAC2E4002431F3 /* Debug */ = {
