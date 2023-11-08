@@ -8,10 +8,9 @@
 import Foundation
 import UIKit
 
-class CollapsibleTableViewCell: UITableViewCell {
+class CustomTableViewCell: UITableViewCell {
     
     let nameLabel = UILabel()
-    let detailLabel = UILabel()
     
     // MARK: Initalizers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -21,28 +20,68 @@ class CollapsibleTableViewCell: UITableViewCell {
         
         // configure nameLabel
         contentView.addSubview(nameLabel)
+        
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.leadingAnchor.constraint(equalTo: marginGuide.leadingAnchor).isActive = true
         nameLabel.topAnchor.constraint(equalTo: marginGuide.topAnchor).isActive = true
         nameLabel.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor).isActive = true
         nameLabel.numberOfLines = 0
         nameLabel.font = UIFont.systemFont(ofSize: 16)
-        
-        // configure detailLabel
-        contentView.addSubview(detailLabel)
-        detailLabel.lineBreakMode = .byWordWrapping
-        detailLabel.translatesAutoresizingMaskIntoConstraints = false
-        detailLabel.leadingAnchor.constraint(equalTo: marginGuide.leadingAnchor).isActive = true
-        detailLabel.bottomAnchor.constraint(equalTo: marginGuide.bottomAnchor).isActive = true
-        detailLabel.trailingAnchor.constraint(equalTo: marginGuide.trailingAnchor).isActive = true
-        detailLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5).isActive = true
-        detailLabel.numberOfLines = 0
-        detailLabel.font = UIFont.systemFont(ofSize: 12)
-        detailLabel.textColor = UIColor.lightGray
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+}
+
+
+class CustomWithTextTableViewCell: UITableViewCell {
     
+    let nameLabel = UILabel()
+    let detailLabel = UILabel()
+    
+    lazy var textField: UITextField = {
+        let field = UITextField()
+        field.backgroundColor = .systemGray4
+        field.borderStyle = .roundedRect
+        field.font = UIFont.systemFont(ofSize: 16)
+        return field
+    }()
+    
+    // MARK: Initalizers
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
+        let marginGuide = contentView.layoutMarginsGuide
+        
+        contentView.addSubview(nameLabel)
+        contentView.addSubview(textField)
+        contentView.addSubview(detailLabel)
+        
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.numberOfLines = 0
+        nameLabel.font = UIFont.systemFont(ofSize: 16)
+        
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        
+        detailLabel.translatesAutoresizingMaskIntoConstraints = false
+        detailLabel.font = UIFont.systemFont(ofSize: 12)
+        detailLabel.textColor = UIColor.lightGray
+        
+        NSLayoutConstraint.activate([
+            nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            
+            textField.widthAnchor.constraint(equalToConstant: 50),
+            textField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            textField.trailingAnchor.constraint(equalTo: detailLabel.leadingAnchor, constant: -10),
+            
+            detailLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
+            detailLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
+        ])
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }

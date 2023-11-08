@@ -248,13 +248,11 @@ extension HomeView: UIPickerViewDelegate, UIPickerViewDataSource {
         if pickerView == manufacturersPicker {
             manufacturersTextField.text = manufacturersArray[row]
             choosedManufacturer = manufacturersArray[row]
-            dismissKeyboard()
             modelsTextField.isEnabled = true
             getModels(manufacturer: manufacturersArray[row])
         } else if pickerView == modelsPicker {
             modelsTextField.text = modelsArray[row]
             choosedModel = modelsArray[row]
-            dismissKeyboard()
         }
     }
 }

@@ -214,19 +214,34 @@ extension ChecklistViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: CollapsibleTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell") as? CollapsibleTableViewCell ??
-        CollapsibleTableViewCell(style: .default, reuseIdentifier: "cell")
+        let commonCell: CustomTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell") as? CustomTableViewCell ?? CustomTableViewCell(style: .default, reuseIdentifier: "cell")
+        
+        let inputCell: CustomWithTextTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell") as? CustomWithTextTableViewCell ?? CustomWithTextTableViewCell(style: .default, reuseIdentifier: "cell")
         
         let item: Item = sections[indexPath.section].items[indexPath.row]
         
-        cell.nameLabel.text = item.name
-        cell.detailLabel.text = item.complement
+        if item.complement == String() {
+            commonCell.nameLabel.text = item.name
+            return commonCell
+        } else {
+            inputCell.nameLabel.text = item.name
+            inputCell.detailLabel.text = item.complement
+            return inputCell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        let cell = tableView.cellForRow(at: indexPath)
         
-        return cell
+        // Check the type of the cell
+        if cell is CustomWithTextTableViewCell {
+            return nil
+        } else {
+            return indexPath
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.cellForRow(at: indexPath)?.backgroundColor = UIColor(named: "lightBlue")
         tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
     }
     
