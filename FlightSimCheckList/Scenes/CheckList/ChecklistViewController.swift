@@ -14,15 +14,14 @@ enum ChecklistType {
 }
 
 class ChecklistViewController: UIViewController {
-    
-    var items = [ChecklistModel]()
-    var type: ChecklistType
+    var sections = [Section]()
+    var type: ManufacturersType
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    init(type: ChecklistType) {
+    init(type: ManufacturersType) {
         self.type = type
         super.init(nibName: nil, bundle: nil)
     }
@@ -51,86 +50,127 @@ class ChecklistViewController: UIViewController {
         self.checklistTable.dataSource = self
     }
     
-    func checklistPopulate(type: ChecklistType) {
+    func checklistPopulate(type: ManufacturersType) {
         switch type {
         case .airbus:
-            self.items.append(ChecklistModel.init(checklistType: "Cockpit Preparation",
-                                                  checklistItem: ["Seat belts",
-                                                                  "Adirs",
-                                                                  "Parking Brakes"]))
-            self.items.append(ChecklistModel.init(checklistType: "Before Start",
-                                                  checklistItem: ["Parking Brake",
-                                                                  "Windows",
-                                                                  "Beacon"]))
-            self.items.append(ChecklistModel.init(checklistType: "After Start",
-                                                  checklistItem: ["Anti Ice",
-                                                                  "ECAM Status",
-                                                                  "Rudder Trim"]))
-            self.items.append(ChecklistModel.init(checklistType: "Taxi",
-                                                  checklistItem: ["Flight Control",
-                                                                  "Radar & PWS",
-                                                                  "ECAM Memo"]))
-            self.items.append(ChecklistModel.init(checklistType: "Approach & Landing",
-                                                  checklistItem: ["Seat Belts",
-                                                                  "Cabin Crew",
-                                                                  "ECAM Memo"]))
-            self.items.append(ChecklistModel.init(checklistType: "After Landing",
-                                                  checklistItem: ["Radar & PWS"]))
-            self.items.append(ChecklistModel.init(checklistType: "Parking",
-                                                  checklistItem: ["Park Break or Chocks",
-                                                                  "Engines",
-                                                                  "Wing Lights",
-                                                                  "Fuel Pumps"]))
-            self.items.append(ChecklistModel.init(checklistType: "Securing the Aircraft",
-                                                  checklistItem: ["Oxygen", "Emer Exit LT", "EFBs", "Batteries"]))
+            self.sections = [
+                Section(name: "Cockpit Preparation", items: [
+                    Item(name: "Gear Pins % Covers", complement: ""),
+                    Item(name: "Fuel Quantitty", complement: "KG/LB"),
+                    Item(name: "Seat Belts", complement: ""),
+                    Item(name: "Adirs to NAV", complement: ""),
+                    Item(name: "Baro Ref", complement: "(both)")
+                ]),
+                Section(name: "Before Start", items: [
+                    Item(name: "Parking Brake", complement: ""),
+                    Item(name: "T.O Speeds & Thrust", complement: "(both)"),
+                    Item(name: "Windows Closed", complement: "(both)"),
+                    Item(name: "Beacon", complement: ""),
+                ]),
+                Section(name: "After Start", items: [
+                    Item(name: "Anti Ice", complement: ""),
+                    Item(name: "Ecam Status", complement: ""),
+                    Item(name: "Pitch trim", complement: "%"),
+                    Item(name: "Rudder Trim to Neutral", complement: ""),
+                ]),
+                Section(name: "Taxi", items: [
+                    Item(name: "Flight Control", complement: "(both)"),
+                    Item(name: "Flaps Setting", complement: "(both)"),
+                    Item(name: "Radar & PWS", complement: "On & Auto"),
+                    Item(name: "Eng Model Sel", complement: ""),
+                    Item(name: "Ecam Memo T.O no Blue", complement: ""),
+                ]),
+                Section(name: "Lineup", items: [
+                    Item(name: "T.O RWY", complement: "(both)"),
+                    Item(name: "TCAS", complement: ""),
+                    Item(name: "Pack 1 & 2", complement: ""),
+                ]),
+                Section(name: "Approach", items: [
+                    Item(name: "Baro Ref", complement: "(both)"),
+                    Item(name: "Seat Belts", complement: ""),
+                    Item(name: "Minimun", complement: ""),
+                    Item(name: "Auto Brake", complement: ""),
+                    Item(name: "Eng Mode Sel", complement: ""),
+                ]),
+                Section(name: "Landing", items: [
+                    Item(name: "Go Around Alt", complement: "FT Set"),
+                    Item(name: "Cabin Crew", complement: "advised"),
+                    Item(name: "Ecam Memo LDG no Blue", complement: "")
+                ]),
+                Section(name: "After Landing", items: [
+                    Item(name: "Radar & PWS", complement: "")
+                ]),
+                Section(name: "Parking", items: [
+                    Item(name: "Park BRK or Chocks", complement: ""),
+                    Item(name: "Engines", complement: ""),
+                    Item(name: "Wing Lights", complement: ""),
+                    Item(name: "Fuel Pumps", complement: ""),
+                ]),
+                Section(name: "Securing the Aircraft", items: [
+                    Item(name: "Oxygen", complement: ""),
+                    Item(name: "Emer Exit LT", complement: ""),
+                    Item(name: "EFBs", complement: ""),
+                    Item(name: "Batteries", complement: ""),
+                ])
+            ]
         case .boeing:
-            self.items.append(ChecklistModel.init(checklistType: "Pre Flight",
-                                                  checklistItem: ["Parking Brakes",
-                                                                  "Battery Switch",
-                                                                  "APU Generator",
-                                                                  "APU Master Knob",
-                                                                  "External Power",
-                                                                  "Landing Gear",
-                                                                  "Flaps Lever",
-                                                                  "Speedbrakes Lever",
-                                                                  "Engine Pump Controls",
-                                                                  "Fuel Pump Switches",
-                                                                  "Engine Instruments",
-                                                                  "Anti-Ice Controls",
-                                                                  "Window Heating",
-                                                                  "Altitude Setting",
-                                                                  "IFR Clearance",
-                                                                  "Fuel Quantity",
-                                                                  "Beacon Lighting"]))
-            self.items.append(ChecklistModel.init(checklistType: "Before Startup",
-                                                  checklistItem: ["Seat belt sign",
-                                                                  "Fuel quantity",
-                                                                  "Engine throttle",
-                                                                  "Engine area",
-                                                                  "Auto-Breake setting"]))
-            self.items.append(ChecklistModel.init(checklistType: "Engine Startup",
-                                                  checklistItem: ["APU Master Knob Start",
-                                                                  "APU Generator",
-                                                                  "Engine EEC Modes",
-                                                                  "Engine Starter Knob",
-                                                                  "Engine Fuel Controls",
-                                                                  "Engine Generators L1, R1",
-                                                                  "APU Master Knob",
-                                                                  "APU Generator",
-                                                                  "External Power",
-                                                                  "Auto-Breake setting"]))
-            self.items.append(ChecklistModel.init(checklistType: "Before Taxi",
-                                                  checklistItem: ["Parking Brakes",
-                                                                  "Fuel Quantity",
-                                                                  "Taxi Lights",
-                                                                  "Navigation Lights",
-                                                                  "Instrument Displays",
-                                                                  "Taxi Clearence"]))
-            self.items.append(ChecklistModel.init(checklistType: "Taxi",
-                                                  checklistItem: ["Flight Directors",
-                                                                  "Parking Brakes"]))
+            self.sections = [
+                Section(name: "Pre Flight", items: [
+                    Item(name: "Parking Brakes", complement: ""),
+                    Item(name: "Battery Switch", complement: "KG/LB"),
+                    Item(name: "APU Generator", complement: ""),
+                    Item(name: "APU Master Knob", complement: ""),
+                    Item(name: "External Power", complement: "(both)")
+                ]),
+                Section(name: "Cockpit Preparation", items: [
+                    Item(name: "Gear Pins % Covers", complement: ""),
+                    Item(name: "Fuel Quantitty", complement: "KG/LB"),
+                    Item(name: "Seat Belts", complement: ""),
+                    Item(name: "Adirs to NAV", complement: ""),
+                    Item(name: "Baro Ref", complement: "(both)")
+                ]),
+            ]
+            //                                                                  "Landing Gear",
+            //                                                                  "Flaps Lever",
+            //                                                                  "Speedbrakes Lever",
+            //                                                                  "Engine Pump Controls",
+            //                                                                  "Fuel Pump Switches",
+            //                                                                  "Engine Instruments",
+            //                                                                  "Anti-Ice Controls",
+            //                                                                  "Window Heating",
+            //                                                                  "Altitude Setting",
+            //                                                                  "IFR Clearance",
+            //                                                                  "Fuel Quantity",
+            //                                                                  "Beacon Lighting"]))
+            //            self.items.append(ChecklistModel.init(checklistType: "Before Startup",
+            //                                                  checklistItem: ["Seat belt sign",
+            //                                                                  "Fuel quantity",
+            //                                                                  "Engine throttle",
+            //                                                                  "Engine area",
+            //                                                                  "Auto-Breake setting"]))
+            //            self.items.append(ChecklistModel.init(checklistType: "Engine Startup",
+            //                                                  checklistItem: ["APU Master Knob Start",
+            //                                                                  "APU Generator",
+            //                                                                  "Engine EEC Modes",
+            //                                                                  "Engine Starter Knob",
+            //                                                                  "Engine Fuel Controls",
+            //                                                                  "Engine Generators L1, R1",
+            //                                                                  "APU Master Knob",
+            //                                                                  "APU Generator",
+            //                                                                  "External Power",
+            //                                                                  "Auto-Breake setting"]))
+            //            self.items.append(ChecklistModel.init(checklistType: "Before Taxi",
+            //                                                  checklistItem: ["Parking Brakes",
+            //                                                                  "Fuel Quantity",
+            //                                                                  "Taxi Lights",
+            //                                                                  "Navigation Lights",
+            //                                                                  "Instrument Displays",
+            //                                                                  "Taxi Clearence"]))
+            //            self.items.append(ChecklistModel.init(checklistType: "Taxi",
+            //                                                  checklistItem: ["Flight Directors",
+            ////                                                                  "Parking Brakes"]))
         }
-
+        
         self.checklistTable.reloadData()
     }
     
@@ -166,20 +206,22 @@ extension ChecklistViewController {
 extension ChecklistViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.items.count
+        return self.sections.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.items[section].checklistItem.count
+        return sections[section].collapsed ? 0 : sections[section].items.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell: CollapsibleTableViewCell = tableView.dequeueReusableCell(withIdentifier: "cell") as? CollapsibleTableViewCell ??
+        CollapsibleTableViewCell(style: .default, reuseIdentifier: "cell")
         
-        var content = cell.defaultContentConfiguration()
-        content.text = items[indexPath.section].checklistItem[indexPath.row]
-        cell.contentConfiguration = content
-        cell.selectionStyle = .none
+        let item: Item = sections[indexPath.section].items[indexPath.row]
+        
+        cell.nameLabel.text = item.name
+        cell.detailLabel.text = item.complement
+        
         return cell
     }
     
@@ -187,13 +229,40 @@ extension ChecklistViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.cellForRow(at: indexPath)?.backgroundColor = UIColor(named: "lightBlue")
         tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
     }
-
+    
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         tableView.cellForRow(at: indexPath)?.backgroundColor = .white
         tableView.cellForRow(at: indexPath)?.accessoryType = .none
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return items[section].checklistType
+        return sections[section].name
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: "header") as? CollapsibleTableViewHeader ?? CollapsibleTableViewHeader(reuseIdentifier: "header")
+        
+        header.titleLabel.text = sections[section].name
+        header.arrowLabel.text = ">"
+        header.setCollapsed(sections[section].collapsed)
+        
+        header.section = section
+        header.delegate = self
+        
+        return header
+    }
+}
+
+extension ChecklistViewController: CollapsibleTableViewHeaderDelegate {
+    
+    func toggleSection(_ header: CollapsibleTableViewHeader, section: Int) {
+        let collapsed = !sections[section].collapsed
+        
+        // Toggle collapse
+        sections[section].collapsed = collapsed
+        header.setCollapsed(collapsed)
+        
+        checklistTable.reloadSections(NSIndexSet(index: section) as IndexSet, with: .automatic)
+    }
+    
 }

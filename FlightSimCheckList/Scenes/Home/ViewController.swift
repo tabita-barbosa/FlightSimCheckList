@@ -41,18 +41,11 @@ class ViewController: UIViewController {
         view.delegate = self
         return view
     }()
-    
-//    func updateManufacturers(manufacturers: [ManufacturersModel] ) {
-//        homeView.updateManufacturers(manufacturers: manufacturers)
-//    }
-//
-//    func updateModels(models: [String]) {
-//        homeView.updateModels(models: models)
-//    }
 }
 
 extension ViewController: HomeViewDelegate {
-    func didTapOpenChecklist() {
-        //
+    func didTapOpenChecklist(type: ManufacturersType) {
+        let controller = ChecklistViewController(type: type)
+        self.navigationController?.pushViewController(controller, animated: false)
     }
 }
