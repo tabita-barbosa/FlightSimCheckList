@@ -1,48 +1,8 @@
-////
-////  ViewController.swift
-////  FlightSimCheckList
-////
-////  Created by Tabita Barbosa on 07/11/23.
-////
 //
-//import UIKit
+//  ViewController.swift
+//  FlightSimCheckList
 //
-//class ViewController: UIViewController {
-//
-//    let dataArray = ["Airbus", "Maths", "History", "German", "Science"]
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        // Do any additional setup after loading the view.
-//    }
-//
-//    override func viewWillDisappear(_ animated: Bool) {
-//        //
-//    }
-//
-//    override func viewWillAppear(_ animated: Bool) {
-//        //
-//    }
-//
-//    // nav
-//    // title
-//    // dropdown empresa e modelos -  UIPickerView
-//    // botão para ir pra proxima pagina
-//
-//    lazy var companyPicker: UIPickerView = {
-//        let picker = UIPickerView()
-//        picker.delegate = self
-//        picker.dataSource = self
-//        return picker
-//    }()
-//
-//    lazy var modelPicker: UIPickerView = {
-//        let picker = UIPickerView()
-//        picker.delegate = self
-//        picker.dataSource = self
-//        return picker
-//    }()
-//}
+//  Created by Tabita Barbosa on 07/11/23.
 //
 
 import Foundation
@@ -56,9 +16,6 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        if let selectedIndexPath = self.manufacturesTable.indexPathForSelectedRow {
-//            self.manufacturesTable.deselectRow(at: selectedIndexPath, animated: animated)
-//        }
     }
     
     override func viewDidLoad() {
@@ -69,16 +26,12 @@ class ViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-//        self.manufacturesTable.frame = view.bounds
     }
     
     func setupView() {
         navigationItem.title = "tela inicial"
         self.setupHierarchy()
         self.setupConstraints()
-//        self.manufacturesTable.dataSource = self
-//        self.manufacturesTable.delegate = self
-//        self.manufacturesTable.reloadData()
     }
     
     private lazy var contentStack: UIStackView = {
@@ -106,12 +59,6 @@ class ViewController: UIViewController {
         return label
     }()
     
-//    private lazy var manufacturesTable: UITableView = {
-//        let table = UITableView()
-//        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
-//        return table
-//    }()
-//
 //    func manufatureType(name: String) -> ChecklistType {
 //
 //        if name == "Airbus" {
@@ -122,7 +69,7 @@ class ViewController: UIViewController {
 //
 //        return type ?? .airbus
 //    }
-//
+
     lazy var manufacturesPicker: UIPickerView = {
         let picker = UIPickerView()
         picker.delegate = self
@@ -182,28 +129,3 @@ extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
        return row
     }
 }
-
-//extension ViewController: UITableViewDataSource, UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return companies.count
-//    }
-//
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-//
-//        var content = cell.defaultContentConfiguration()
-//        content.text = companies[indexPath.row]
-//        content.textProperties.alignment = .center
-//        cell.backgroundColor = lightBlueColor
-//        cell.layer.cornerRadius = 10
-//
-//        cell.contentConfiguration = content
-//        return cell
-//    }
-//
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let selected = companies[indexPath.row]
-//        let type = self.manufatureType(name: selected)
-//        self.didTapOpenChecklist(type: type)
-//    }
-//}
