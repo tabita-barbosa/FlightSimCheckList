@@ -85,7 +85,7 @@ class HomeView: UIView {
     
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "Faça o checklist do seu voo!"
+        label.text = "faça o checklist do seu voo!"
         label.font = UIFont.systemFont(ofSize: 18.0)
         label.numberOfLines = 0
         label.textAlignment = .center
@@ -215,7 +215,7 @@ class HomeView: UIView {
         let attributedString = NSMutableAttributedString(string: "para informações sobre o projeto acesse: FlightSimCheckList no Github.")
         attributedString.addAttribute(.link, value: "https://github.com/tabita-barbosa/FlightSimCheckList.git", range: NSRange(location: 41, length: 18))
         label.attributedText = attributedString
-        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.font = UIFont.systemFont(ofSize: 16)
         label.numberOfLines = 0
         label.textAlignment = .natural
         return label
