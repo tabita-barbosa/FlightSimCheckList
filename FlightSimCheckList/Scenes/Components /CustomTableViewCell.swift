@@ -64,21 +64,16 @@ class CustomWithTextTableViewCell: UITableViewCell {
         textField.translatesAutoresizingMaskIntoConstraints = false
         
         detailLabel.translatesAutoresizingMaskIntoConstraints = false
-        detailLabel.font = UIFont.systemFont(ofSize: 12)
+        detailLabel.font = UIFont.systemFont(ofSize: 14)
         detailLabel.textColor = UIColor.lightGray
-        
-        var textFieldTrailingMargin = -50
-        if detailLabel.text == String() {
-            textFieldTrailingMargin = -10
-        }
         
         NSLayoutConstraint.activate([
             nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             
-            textField.widthAnchor.constraint(equalToConstant: 50),
+            textField.widthAnchor.constraint(equalToConstant: 60),
             textField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            textField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: CGFloat(textFieldTrailingMargin)),
+            textField.trailingAnchor.constraint(equalTo: detailLabel.trailingAnchor, constant: -10),
             
             detailLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             detailLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)
