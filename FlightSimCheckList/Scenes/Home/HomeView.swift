@@ -43,6 +43,9 @@ class HomeView: UIView {
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tap.cancelsTouchesInView = false
         self.addGestureRecognizer(tap)
+        let tapLink = UITapGestureRecognizer(target: self, action: #selector(self.onClicLabel(sender:)))
+        titleManufacturers.isUserInteractionEnabled = true
+        titleManufacturers.addGestureRecognizer(tapLink)
     }
     
     // MARK: VIEW COMPONENTS
@@ -67,7 +70,7 @@ class HomeView: UIView {
         let stack = UIStackView()
         stack.axis = .vertical
         stack.distribution = .equalSpacing
-        stack.spacing = 20
+        stack.spacing = 100
         return stack
     }()
     
@@ -205,6 +208,32 @@ class HomeView: UIView {
             return .boeing
         }
     }
+    
+    // MARK: contributions
+    private lazy var infosLink: UILabel = {
+        let label = UILabel()
+        let attributedString = NSMutableAttributedString(string: "para informações sobre o projeto acesse: FlightSimCheckList no Github.")
+        attributedString.addAttribute(.link, value: "https://github.com/tabita-barbosa/FlightSimCheckList.git", range: NSRange(location: 41, length: 18))
+        label.attributedText = attributedString
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.numberOfLines = 0
+        label.textAlignment = .natural
+        return label
+    }()
+    
+    @objc
+    private func onClicLabel(sender:UITapGestureRecognizer) {
+        openUrl(urlString: "https://github.com/tabita-barbosa/FlightSimCheckList.git")
+    }
+
+    private func openUrl(urlString:String!) {
+        let url = URL(string: urlString)!
+        if #available(iOS 10.0, *) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            UIApplication.shared.openURL(url)
+        }
+    }
 }
 
 extension HomeView {
@@ -219,6 +248,7 @@ extension HomeView {
         self.middleContent.addArrangedSubview(self.modelsHelperLabel)
         self.middleContent.addArrangedSubview(self.modelsTextField)
         self.lowerContent.addArrangedSubview(self.chooseChecklistButton)
+        self.lowerContent.addArrangedSubview(self.infosLink)
     }
     
     func setupConstraints() {

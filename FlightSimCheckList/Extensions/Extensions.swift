@@ -12,3 +12,7 @@ extension Collection where Indices.Iterator.Element == Index {
      return (startIndex <= index && index < endIndex) ? self[index] : nil
    }
 }
+
+extension NSAttributedString.Key {
+    static let hyperlink = NSAttributedString.Key("hyperlink")
+}
