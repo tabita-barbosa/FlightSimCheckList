@@ -51,8 +51,6 @@ class CustomWithTextTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
-        let marginGuide = contentView.layoutMarginsGuide
-        
         contentView.addSubview(nameLabel)
         contentView.addSubview(textField)
         contentView.addSubview(detailLabel)
@@ -73,7 +71,7 @@ class CustomWithTextTableViewCell: UITableViewCell {
             
             textField.widthAnchor.constraint(equalToConstant: 60),
             textField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            textField.trailingAnchor.constraint(equalTo: detailLabel.trailingAnchor, constant: -10),
+            textField.trailingAnchor.constraint(equalTo: detailLabel.leadingAnchor, constant: -10),
             
             detailLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             detailLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)

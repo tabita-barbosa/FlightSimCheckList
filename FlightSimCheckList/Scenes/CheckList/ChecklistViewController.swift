@@ -38,7 +38,7 @@ class ChecklistViewController: UIViewController {
     }
     
     func setupView() {
-        navigationItem.title = modelName
+        navigationItem.title = "\(type.name) - \(modelName)"
     }
     
     lazy var checklistView: ChecklistView = {

@@ -16,8 +16,7 @@ class HomeView: UIView {
     weak var delegate: HomeViewDelegate?
     private var viewModel: HomeViewModel
     
-    private let darkBlueColor = UIColor(named: "darkBlue")
-    private let lightBlueColor = UIColor(named: "lightBlue")
+    private let mediumPurpleColor = UIColor(named: "mediumPurple")
     
     private var manufacturersArray = ["Airbus", "Boeing"]
     private var modelsArray: [String] = []
@@ -187,10 +186,9 @@ class HomeView: UIView {
     private lazy var chooseChecklistButton: UIButton = {
         let button = UIButton()
         button.setTitle("visualizar checklist", for: .normal)
-        button.backgroundColor = darkBlueColor
+        button.backgroundColor = mediumPurpleColor
         button.layer.cornerRadius = 8
         button.layer.borderWidth = 0.5
-        button.setTitleColor(lightBlueColor, for: .selected)
         button.addTarget(self, action:#selector(self.didTapOpenChecklist), for: .touchUpInside)
         return button
     }()
