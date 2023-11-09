@@ -18,7 +18,6 @@ class CustomTableViewCell: UITableViewCell {
         
         let marginGuide = contentView.layoutMarginsGuide
         
-        // configure nameLabel
         contentView.addSubview(nameLabel)
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -68,13 +67,18 @@ class CustomWithTextTableViewCell: UITableViewCell {
         detailLabel.font = UIFont.systemFont(ofSize: 12)
         detailLabel.textColor = UIColor.lightGray
         
+        var textFieldTrailingMargin = -50
+        if detailLabel.text == String() {
+            textFieldTrailingMargin = -10
+        }
+        
         NSLayoutConstraint.activate([
             nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             nameLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             
             textField.widthAnchor.constraint(equalToConstant: 50),
             textField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
-            textField.trailingAnchor.constraint(equalTo: detailLabel.leadingAnchor, constant: -10),
+            textField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: CGFloat(textFieldTrailingMargin)),
             
             detailLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             detailLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10)

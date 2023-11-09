@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6203C2462AFC301E001575FE /* ChecklistData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6203C2452AFC301E001575FE /* ChecklistData.swift */; };
-		6203C2482AFC3C4A001575FE /* CollapsibleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6203C2472AFC3C4A001575FE /* CollapsibleTableViewCell.swift */; };
-		62B0313F2AFC2B0D0096A2F8 /* CollapsibleTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B0313E2AFC2B0D0096A2F8 /* CollapsibleTableViewHeader.swift */; };
+		6203C2462AFC301E001575FE /* ChecklistViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6203C2452AFC301E001575FE /* ChecklistViewData.swift */; };
+		6203C2482AFC3C4A001575FE /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6203C2472AFC3C4A001575FE /* CustomTableViewCell.swift */; };
+		6203C24A2AFC62A0001575FE /* ChecklistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6203C2492AFC62A0001575FE /* ChecklistView.swift */; };
 		62B03E2D2AFAC2E2002431F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B03E2C2AFAC2E2002431F3 /* AppDelegate.swift */; };
 		62B03E2F2AFAC2E2002431F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B03E2E2AFAC2E2002431F3 /* SceneDelegate.swift */; };
 		62B03E312AFAC2E2002431F3 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B03E302AFAC2E2002431F3 /* ViewController.swift */; };
@@ -27,9 +27,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6203C2452AFC301E001575FE /* ChecklistData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistData.swift; sourceTree = "<group>"; };
-		6203C2472AFC3C4A001575FE /* CollapsibleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsibleTableViewCell.swift; sourceTree = "<group>"; };
-		62B0313E2AFC2B0D0096A2F8 /* CollapsibleTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollapsibleTableViewHeader.swift; sourceTree = "<group>"; };
+		6203C2452AFC301E001575FE /* ChecklistViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistViewData.swift; sourceTree = "<group>"; };
+		6203C2472AFC3C4A001575FE /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		6203C2492AFC62A0001575FE /* ChecklistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecklistView.swift; sourceTree = "<group>"; };
 		62B03E292AFAC2E2002431F3 /* FlightSimCheckList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlightSimCheckList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		62B03E2C2AFAC2E2002431F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		62B03E2E2AFAC2E2002431F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,8 +116,7 @@
 		62B03E452AFAE512002431F3 /* Components  */ = {
 			isa = PBXGroup;
 			children = (
-				62B0313E2AFC2B0D0096A2F8 /* CollapsibleTableViewHeader.swift */,
-				6203C2472AFC3C4A001575FE /* CollapsibleTableViewCell.swift */,
+				6203C2472AFC3C4A001575FE /* CustomTableViewCell.swift */,
 			);
 			path = "Components ";
 			sourceTree = "<group>";
@@ -126,7 +125,8 @@
 			isa = PBXGroup;
 			children = (
 				62B03E522AFB06E3002431F3 /* ChecklistViewController.swift */,
-				6203C2452AFC301E001575FE /* ChecklistData.swift */,
+				6203C2452AFC301E001575FE /* ChecklistViewData.swift */,
+				6203C2492AFC62A0001575FE /* ChecklistView.swift */,
 			);
 			path = CheckList;
 			sourceTree = "<group>";
@@ -247,10 +247,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				62B03E542AFB06E3002431F3 /* ChecklistViewController.swift in Sources */,
-				62B0313F2AFC2B0D0096A2F8 /* CollapsibleTableViewHeader.swift in Sources */,
-				6203C2462AFC301E001575FE /* ChecklistData.swift in Sources */,
+				6203C2462AFC301E001575FE /* ChecklistViewData.swift in Sources */,
 				62B03E692AFB258E002431F3 /* HomeViewModel.swift in Sources */,
-				6203C2482AFC3C4A001575FE /* CollapsibleTableViewCell.swift in Sources */,
+				6203C2482AFC3C4A001575FE /* CustomTableViewCell.swift in Sources */,
 				62B03E5A2AFB06EE002431F3 /* ChecklistModel.swift in Sources */,
 				62B03E372AFAC2E2002431F3 /* FlightSimCheckList.xcdatamodeld in Sources */,
 				62B03E312AFAC2E2002431F3 /* ViewController.swift in Sources */,
@@ -259,6 +258,7 @@
 				62B03E672AFB1F48002431F3 /* HomeView.swift in Sources */,
 				62B03E2F2AFAC2E2002431F3 /* SceneDelegate.swift in Sources */,
 				62B03E572AFB06E9002431F3 /* Extensions.swift in Sources */,
+				6203C24A2AFC62A0001575FE /* ChecklistView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -27,9 +27,8 @@ class ViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
     }
- 
+    
     func setupView() {
-        navigationItem.title = "home"
         self.view.backgroundColor = .white
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -44,8 +43,8 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: HomeViewDelegate {
-    func didTapOpenChecklist(type: ManufacturersType) {
-        let controller = ChecklistViewController(type: type)
+    func didTapOpenChecklist(type: ManufacturersType, modelName: String) {
+        let controller = ChecklistViewController(type: type, modelName: modelName)
         self.navigationController?.pushViewController(controller, animated: false)
     }
 }

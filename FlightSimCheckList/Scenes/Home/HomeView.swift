@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol HomeViewDelegate: AnyObject {
-    func didTapOpenChecklist(type: ManufacturersType)
+    func didTapOpenChecklist(type: ManufacturersType, modelName: String)
 }
 
 class HomeView: UIView {
@@ -24,7 +24,6 @@ class HomeView: UIView {
     
     private var choosedManufacturer = String()
     private var choosedModel = String()
-    private var type: ChecklistType?
     
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
@@ -49,18 +48,34 @@ class HomeView: UIView {
     
     // MARK: VIEW COMPONENTS
     
-    private lazy var contentStack: UIStackView = {
+    private lazy var upperContent: UIStackView = {
         let stack = UIStackView()
         stack.axis = .vertical
-        stack.distribution = .fill
+        stack.distribution = .equalSpacing
+        stack.spacing = 20
+        return stack
+    }()
+    
+    private lazy var middleContent: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.distribution = .equalSpacing
         stack.spacing = 10
+        return stack
+    }()
+    
+    private lazy var lowerContent: UIStackView = {
+        let stack = UIStackView()
+        stack.axis = .vertical
+        stack.distribution = .equalSpacing
+        stack.spacing = 20
         return stack
     }()
     
     private lazy var titleManufacturers: UILabel = {
         let label = UILabel()
-        label.text = "Escolha abaixo para visualizar o checklist \n"
-        label.font = UIFont.boldSystemFont(ofSize: 18.0)
+        label.text = "Fligh Simulator Checklist"
+        label.font = UIFont.boldSystemFont(ofSize: 20.0)
         label.numberOfLines = 0
         label.textAlignment = .center
         return label
@@ -182,7 +197,7 @@ class HomeView: UIView {
     
     @objc
     private func didTapOpenChecklist() {
-        self.delegate?.didTapOpenChecklist(type: validateType())
+        self.delegate?.didTapOpenChecklist(type: validateType(), modelName: choosedModel)
     }
  
     private func validateType() -> ManufacturersType {
@@ -196,14 +211,16 @@ class HomeView: UIView {
 
 extension HomeView {
     func setupHierarchy() {
-        self.addSubview(self.contentStack)
-        self.contentStack.addArrangedSubview(self.descriptionLabel)
-        self.contentStack.addArrangedSubview(self.titleManufacturers)
-        self.contentStack.addArrangedSubview(self.manufacturersHelperLabel)
-        self.contentStack.addArrangedSubview(self.manufacturersTextField)
-        self.contentStack.addArrangedSubview(self.modelsHelperLabel)
-        self.contentStack.addArrangedSubview(self.modelsTextField)
-        self.contentStack.addArrangedSubview(self.chooseChecklistButton)
+        self.addSubview(self.upperContent)
+        self.addSubview(self.middleContent)
+        self.addSubview(self.lowerContent)
+        self.upperContent.addArrangedSubview(self.titleManufacturers)
+        self.upperContent.addArrangedSubview(self.descriptionLabel)
+        self.middleContent.addArrangedSubview(self.manufacturersHelperLabel)
+        self.middleContent.addArrangedSubview(self.manufacturersTextField)
+        self.middleContent.addArrangedSubview(self.modelsHelperLabel)
+        self.middleContent.addArrangedSubview(self.modelsTextField)
+        self.lowerContent.addArrangedSubview(self.chooseChecklistButton)
     }
     
     func setupConstraints() {
@@ -212,12 +229,25 @@ extension HomeView {
             self.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor)
         ])
         
-        self.contentStack.translatesAutoresizingMaskIntoConstraints = false
+        self.upperContent.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            contentStack.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            contentStack.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-            contentStack.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 24.0),
-            contentStack.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -24.0)
+            upperContent.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 24),
+            upperContent.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 24.0),
+            upperContent.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -24.0)
+        ])
+        
+        self.middleContent.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            middleContent.topAnchor.constraint(equalTo: self.upperContent.bottomAnchor, constant: 24),
+            middleContent.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 24.0),
+            middleContent.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -24.0)
+        ])
+        
+        self.lowerContent.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            lowerContent.topAnchor.constraint(equalTo: self.middleContent.bottomAnchor, constant: 24),
+            lowerContent.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 24.0),
+            lowerContent.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -24.0)
         ])
     }
 }
