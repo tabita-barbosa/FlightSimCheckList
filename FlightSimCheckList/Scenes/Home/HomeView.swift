@@ -153,9 +153,9 @@ class HomeView: UIView {
     
     private func getModels(manufacturer: String) -> [String] {
         if manufacturer == "Airbus" {
-            modelsArray = ["A320", "A321"]
+            modelsArray = ["A320"]
         } else if manufacturer == "Boeing" {
-            modelsArray = ["737 MAX", "777"]
+            modelsArray = ["737 Max"]
         }
         
         return modelsArray
